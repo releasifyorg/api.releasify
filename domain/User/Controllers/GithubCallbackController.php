@@ -9,6 +9,7 @@ use Domain\User\Models\User;
 use Domain\User\Requests\GithubCallbackRequest;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class GithubCallbackController extends ParentController
@@ -72,14 +73,15 @@ class GithubCallbackController extends ParentController
             return $user;
         }
 
-        $password = 'password';
+        $password = Str::password(12);
 
         $user = User::create([
             'name' => $userData['name'],
             'username' => $userData['login'],
+            'github_id' => $userData['id'],
+            'avatar_url' => $userData['avatar_url'],
             'email' => $userData['email'],
             'password' => Hash::make($password),
-            'avatar_url' => $userData['avatar_url'],
         ]);
 
         if ($user->email) {
