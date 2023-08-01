@@ -22,7 +22,7 @@ class ParentController extends Controller
         return response()->json($data, $code);
     }
 
-    protected function error(mixed $data = [], $message = 'Помилка сервера', $code = 500): JsonResponse
+    protected function error(mixed $data = [], $message = 'Server error', $code = 500): JsonResponse
     {
         return response()->json(
             [

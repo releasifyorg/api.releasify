@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Domain\User\Controllers\GithubCallbackController;
 use Domain\User\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
