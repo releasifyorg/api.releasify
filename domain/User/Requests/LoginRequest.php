@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Domain\User\Requests;
 
 use App\Support\Parents\ParentRequest;
-use Illuminate\Validation\Rule;
 
-class RegistrationRequest extends ParentRequest
+class LoginRequest extends ParentRequest
 {
     public function rules(): array
     {
@@ -17,13 +16,6 @@ class RegistrationRequest extends ParentRequest
                 'string',
                 'min:4',
                 'max:32',
-                Rule::unique('users', 'username'),
-            ],
-            'email' => [
-                'required',
-                'email',
-                'string',
-                Rule::unique('users', 'email'),
             ],
             'password' => [
                 'required',
