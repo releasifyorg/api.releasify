@@ -22,8 +22,9 @@ class RegistrationController extends ParentController
             //TODO: send email (confirmation, auth data or smthng like that)
 
             $token = $user->createToken(env('APP_NAME'))->plainTextToken;
+            $responseData = ['token' => $token];
 
-            return $this->success($token);
+            return $this->success($responseData);
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }
