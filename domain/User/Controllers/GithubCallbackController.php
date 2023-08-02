@@ -10,7 +10,6 @@ use Domain\User\Requests\GithubCallbackRequest;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Laravel\Socialite\Facades\Socialite;
 
 class GithubCallbackController extends ParentController
 {
