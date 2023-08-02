@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'username',
         'github_id',
+        'github_access_token',
         'avatar_url',
         'email',
         'password',
@@ -45,4 +46,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function github()
+    {
+        $client = new \Github\Client();
+        $client->authenticate($this->github_access_token, null, \Github\AuthMethod::ACCESS_TOKEN);
+
+        return $client;
+    }
 }

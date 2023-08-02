@@ -49,6 +49,7 @@ class GithubCallbackController extends ParentController
             ]);
 
             $userData = json_decode((string) $userResponse->getBody(), true);
+            $userData['access_token'] = $accessToken;
 
             $user = $this->getOrCreateUser($userData);
 
@@ -78,6 +79,7 @@ class GithubCallbackController extends ParentController
             'name' => $userData['name'],
             'username' => $userData['login'],
             'github_id' => $userData['id'],
+            'github_access_token' => $userData['access_token'],
             'avatar_url' => $userData['avatar_url'],
             'email' => $userData['email'],
             'password' => Hash::make($password),
