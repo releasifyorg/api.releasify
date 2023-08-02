@@ -17,18 +17,17 @@ class LoginController extends ParentController
     public function __invoke(LoginRequest $request)
     {
         try {
-            $validated = $request->validated();
 
-            if (!Auth::attempt($validated)) {
-                return $this->error($validated, 'Invalid credentials');
+            if (!Auth::attempt($request->toArray())) {
+                return $this->validation('Invalid credentials');
             }
 
             $user = Auth::user();
 
-            $token = $user->createToken(env('APP_NAME'))->plainTextToken;
-            $responseData = ['token' => $token];
+            return $this->success(
+                $user->createToken(env('APP_NAME'))->plainTextToken
+            );
 
-            return $this->success($responseData);
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }

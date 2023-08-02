@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.8",
+        "spatie/laravel-data": "^3.7",
         "spatie/laravel-ray": "^1.32"
     },
     "require-dev": {

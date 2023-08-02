@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\User\Requests;
 
 use App\Support\Parents\ParentRequest;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends ParentRequest
 {
@@ -16,6 +17,7 @@ class LoginRequest extends ParentRequest
                 'string',
                 'min:4',
                 'max:32',
+                Rule::exists('users', 'username'),
             ],
             'password' => [
                 'required',
