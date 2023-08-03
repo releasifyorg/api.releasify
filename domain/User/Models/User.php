@@ -3,7 +3,10 @@
 namespace Domain\User\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Domain\Project\Models\Project;
+use Github\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,11 +50,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function github()
+    public function github(): Client
     {
         $client = new \Github\Client();
         $client->authenticate($this->github_access_token, null, \Github\AuthMethod::ACCESS_TOKEN);
 
         return $client;
+    }
+
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
     }
 }
