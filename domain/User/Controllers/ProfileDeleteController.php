@@ -25,7 +25,7 @@ class ProfileDeleteController extends ParentController
                 return $this->error([], 'Database deleting error');
             }
 
-            return $this->success();
+            return $this->noContent();
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }
