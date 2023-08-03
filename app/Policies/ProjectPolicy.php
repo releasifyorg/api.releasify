@@ -38,7 +38,7 @@ class ProjectPolicy
      */
     public function update(User $user, DbProject $project): bool
     {
-        //
+        return $project->user_id == $user->id;
     }
 
     /**

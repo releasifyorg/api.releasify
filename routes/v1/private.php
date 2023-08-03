@@ -6,6 +6,8 @@ use Domain\Project\Controllers\CreateProjectController;
 use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
+use Domain\Project\Controllers\ProjectUpdateController;
+use Domain\Project\Requests\ProjectUpdateRequest;
 use Domain\User\Controllers\ProfileController;
 use Domain\User\Controllers\ProfileDeleteController;
 use Domain\User\Controllers\ProfileUpdateController;
@@ -35,6 +37,6 @@ Route::group([
     Route::get('/{project}', ProjectController::class);
     Route::post('/', CreateProjectController::class);
     Route::delete('/{project}', ProjectDeleteController::class);
-    Route::put('/{project}');
+    Route::put('/{project}', ProjectUpdateController::class);
 
 });
