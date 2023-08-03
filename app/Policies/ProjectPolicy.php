@@ -46,7 +46,7 @@ class ProjectPolicy
      */
     public function delete(User $user, DbProject $project): bool
     {
-        //
+        return $project->user_id == $user->id;
     }
 
     /**
