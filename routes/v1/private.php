@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Domain\Project\Controllers\CreateProjectController;
+use Domain\Project\Controllers\GetProjectsController;
 use Domain\User\Controllers\ProfileController;
 use Domain\User\Controllers\ProfileDeleteController;
 use Domain\User\Controllers\ProfileUpdateController;
@@ -28,7 +29,7 @@ Route::group([
 
 ], function () {
 
-    Route::get('/');
+    Route::get('/', GetProjectsController::class);
     Route::get('/{project}');
     Route::post('/', CreateProjectController::class);
     Route::put('/{project}');
