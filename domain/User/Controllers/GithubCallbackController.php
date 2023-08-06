@@ -9,6 +9,7 @@ use Domain\User\Models\User;
 use Domain\User\Requests\GithubCallbackRequest;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class GithubCallbackController extends ParentController
@@ -85,9 +86,16 @@ class GithubCallbackController extends ParentController
             'password' => Hash::make($password),
         ]);
 
+        ray($user->email);
         if ($user->email) {
-            //TODO: send email with password
-            ray($password);
+            Mail::send('emails.welcome', [
+                'username' => $user->username,
+                'password' => $password
+            ], function ($message) use ($user) {
+                $message->from(env('MAIL_FROM_ADDRESS'), 'Welcome to ' . env('APP_NAME'));
+
+                $message->to($user->email);
+            });
         }
 
         return $user;
