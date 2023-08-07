@@ -24,6 +24,18 @@ Route::group([
     Route::put('/', ProfileUpdateController::class);
     Route::delete('/', ProfileDeleteController::class);
 
+    Route::group([
+
+        'namespace' => '\Domain\Github\Controllers',
+        'prefix' => 'github',
+        'middleware' => 'github.auth',
+
+    ], function () {
+
+        Route::get('/repos', GetReposController::class);
+
+    });
+
 });
 
 Route::group([
