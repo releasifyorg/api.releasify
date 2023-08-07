@@ -74,7 +74,7 @@ class GithubCallbackController extends ParentController
             return $user;
         }
 
-        $password = Str::password(12);
+        $password = Str::password(12, symbols: false);
 
         $user = User::create([
             'name' => $userData['name'],
