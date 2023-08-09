@@ -52,6 +52,23 @@ class GithubCallbackController extends ParentController
             $userData = json_decode((string) $userResponse->getBody(), true);
             $userData['access_token'] = $accessToken;
 
+            if (is_null($userData['email'])) {
+                $emailResponse = $this->http->get('https://api.github.com/user/emails', [
+                    'headers' => [
+                        'Authorization' => 'token ' . $accessToken
+                    ]
+                ]);
+
+                $emailData = json_decode((string) $emailResponse->getBody(), true);
+
+                foreach ($emailData as $email) {
+                    if ($email['primary']) {
+                        $userData['email'] = $email['email'];
+                        break;
+                    }
+                }
+            }
+
             $user = $this->getOrCreateUser($userData);
 
             $token = $user->createToken(env('APP_NAME'))->plainTextToken;
