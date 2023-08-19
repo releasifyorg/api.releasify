@@ -44,7 +44,6 @@ return [
     'servers' => null,
 
     'middleware' => [
-        'web',
         RestrictedDocsAccess::class,
     ],
 
