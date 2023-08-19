@@ -103,7 +103,6 @@ class GithubCallbackController extends ParentController
             'password' => Hash::make($password),
         ]);
 
-        ray($user->email);
         if ($user->email) {
             Mail::send('emails.welcome', [
                 'username' => $user->username,
