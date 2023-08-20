@@ -17,11 +17,11 @@ class UpdateUserAction
     public function __invoke(User $user, UpdateUserData $data): User
     {
         $updateData = [
-            'name' => $data->name ?? $user->name,
-            'username' => $data->username ?? $user->username,
-            'avatar_url' => $data->avatar_url ?? $user->avatar_url,
-            'email' => $data->email ?? $user->email,
-            'password' => $data->password ?? $user->password,
+            'name' => $data->name,
+            'username' => $data->username,
+            'avatar_url' => $data->avatar_url,
+            'email' => $data->email,
+            'password' => $data->password,
         ];
 
         $user->update($updateData);

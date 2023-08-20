@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use Domain\Github\Controllers\GetReposController;
 use Domain\Project\Controllers\CreateProjectController;
 use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
 use Domain\Project\Controllers\ProjectUpdateController;
-use Domain\Project\Requests\ProjectUpdateRequest;
 use Domain\User\Controllers\ProfileController;
 use Domain\User\Controllers\ProfileDeleteController;
 use Domain\User\Controllers\ProfileUpdateController;

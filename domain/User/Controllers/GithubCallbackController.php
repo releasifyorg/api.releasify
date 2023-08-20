@@ -103,16 +103,16 @@ class GithubCallbackController extends ParentController
             'password' => Hash::make($password),
         ]);
 
-        if ($user->email) {
-            Mail::send('emails.welcome', [
-                'username' => $user->username,
-                'password' => $password
-            ], function ($message) use ($user) {
-                $message->from(env('MAIL_FROM_ADDRESS'), 'Welcome to ' . env('APP_NAME'));
-
-                $message->to($user->email);
-            });
-        }
+//        if ($user->email) {
+//            Mail::send('emails.welcome', [
+//                'username' => $user->username,
+//                'password' => $password
+//            ], function ($message) use ($user) {
+//                $message->from(env('MAIL_FROM_ADDRESS'), 'Welcome to ' . env('APP_NAME'));
+//
+//                $message->to($user->email);
+//            });
+//        }
 
         return $user;
     }

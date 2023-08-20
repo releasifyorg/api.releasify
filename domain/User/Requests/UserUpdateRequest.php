@@ -13,29 +13,30 @@ class UserUpdateRequest extends ParentRequest
     {
         return [
             'name' => [
-                'nullable',
+                'required',
                 'string',
                 'min:4',
                 'max:32',
             ],
             'username' => [
-                'nullable',
-                'string',
+                'required',
                 'min:4',
                 'max:32',
-                Rule::unique('users', 'username'),
+                Rule::unique('users', 'username')->ignore($this->user()->id),
             ],
             'avatar_url' => [
-                'nullable',
+                'required',
                 'string',
                 'url'
             ],
             'email' => [
+                'required',
                 'email',
                 'string',
-                Rule::unique('users', 'email'),
+                Rule::unique('users', 'email')->ignore($this->user()->id),
             ],
             'password' => [
+                'required',
                 'string',
                 'min:6',
                 'max:64',
