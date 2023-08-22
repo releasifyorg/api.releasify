@@ -8,6 +8,7 @@ use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
 use Domain\Project\Controllers\ProjectUpdateController;
+use Domain\Team\Controllers\GetTeamController;
 use Domain\Team\Controllers\GetTeamsController;
 use Domain\User\Controllers\ProfileController;
 use Domain\User\Controllers\ProfileDeleteController;
@@ -62,5 +63,6 @@ Route::group([
 ], function () {
 
     Route::get('/', GetTeamsController::class);
+    Route::get('/{team}', GetTeamController::class);
 
 });
