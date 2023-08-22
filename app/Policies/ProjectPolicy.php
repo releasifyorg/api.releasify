@@ -22,7 +22,9 @@ class ProjectPolicy
      */
     public function view(User $user, DbProject $project): bool
     {
-        return !$project->is_private || $project->user_id == $user->id;
+        return !$project->is_private
+            || $project->user_id == $user->id
+            || $user->teams()->wherePivot('is_active', true)->where('team_id', $project->team_id)->exists();
     }
 
     /**

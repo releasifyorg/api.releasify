@@ -17,7 +17,9 @@ class GetProjectsController extends ParentController
     public function __invoke(Request $request)
     {
         try {
-            return $request->user()->projects;
+            return $request->user()->projects()
+                ->whereNull('team_id')
+                ->get();
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }

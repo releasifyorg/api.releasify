@@ -8,6 +8,7 @@ use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
 use Domain\Project\Controllers\ProjectUpdateController;
+use Domain\Team\Controllers\GetTeamsController;
 use Domain\User\Controllers\ProfileController;
 use Domain\User\Controllers\ProfileDeleteController;
 use Domain\User\Controllers\ProfileUpdateController;
@@ -50,5 +51,16 @@ Route::group([
     Route::post('/', CreateProjectController::class);
     Route::delete('/{project}', ProjectDeleteController::class);
     Route::put('/{project}', ProjectUpdateController::class);
+
+});
+
+Route::group([
+
+    'namespace' => '\Domain\Team\Controllers',
+    'prefix' => 'teams',
+
+], function () {
+
+    Route::get('/', GetTeamsController::class);
 
 });
