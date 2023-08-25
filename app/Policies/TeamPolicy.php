@@ -45,7 +45,7 @@ class TeamPolicy
      */
     public function delete(User $user, Team $team): bool
     {
-        //
+        return $team->user_id == $user->id;
     }
 
     /**
