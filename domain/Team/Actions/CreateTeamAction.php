@@ -20,9 +20,7 @@ class CreateTeamAction
                 'user_id' => $data->user_id,
             ]);
 
-            $team->users()->attach($data->user_id, [
-                'is_active' => true
-            ]);
+            $team->users()->attach($data->user_id);
 
             DB::commit();
             return $team;

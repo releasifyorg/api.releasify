@@ -4,6 +4,7 @@ namespace Domain\User\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Domain\Project\Models\Project;
+use Domain\Team\Models\Invite;
 use Domain\Team\Models\Team;
 use Github\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,5 +71,15 @@ class User extends Authenticatable
     public function teams(): BelongsToMany
     {
         return $this->belongsToMany(Team::class);
+    }
+
+    public function invitesSent(): HasMany
+    {
+        return $this->hasMany(Invite::class, 'sender_id');
+    }
+
+    public function invitesReceived(): HasMany
+    {
+        return $this->hasMany(Invite::class, 'email', 'email');
     }
 }

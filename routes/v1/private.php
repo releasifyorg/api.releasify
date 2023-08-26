@@ -10,6 +10,7 @@ use Domain\Project\Controllers\ProjectDeleteController;
 use Domain\Project\Controllers\ProjectUpdateController;
 use Domain\Team\Controllers\CreateTeamController;
 use Domain\Team\Controllers\DeleteTeamController;
+use Domain\Team\Controllers\GetInvitesController;
 use Domain\Team\Controllers\GetTeamController;
 use Domain\Team\Controllers\GetTeamsController;
 use Domain\Team\Controllers\UpdateTeamController;
@@ -66,9 +67,12 @@ Route::group([
 ], function () {
 
     Route::get('/', GetTeamsController::class);
+    Route::get('/invites', GetInvitesController::class);
     Route::get('/{team}', GetTeamController::class);
+//    Route::post('/{team}/invite/{user}', );
     Route::post('/', CreateTeamController::class);
     Route::delete('/{team}', DeleteTeamController::class);
+//    Route::delete('/{team}/remove/{user}', );
     Route::put('/{team}', UpdateTeamController::class);
 
 });
