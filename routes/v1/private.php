@@ -13,6 +13,7 @@ use Domain\Team\Controllers\DeleteTeamController;
 use Domain\Team\Controllers\GetInvitesController;
 use Domain\Team\Controllers\GetTeamController;
 use Domain\Team\Controllers\GetTeamsController;
+use Domain\Team\Controllers\SendInviteController;
 use Domain\Team\Controllers\UpdateTeamController;
 use Domain\User\Controllers\ProfileController;
 use Domain\User\Controllers\ProfileDeleteController;
@@ -69,7 +70,7 @@ Route::group([
     Route::get('/', GetTeamsController::class);
     Route::get('/invites', GetInvitesController::class);
     Route::get('/{team}', GetTeamController::class);
-//    Route::post('/{team}/invite/{user}', );
+    Route::post('/{team}/invite/{user}', SendInviteController::class);
     Route::post('/', CreateTeamController::class);
     Route::delete('/{team}', DeleteTeamController::class);
 //    Route::delete('/{team}/remove/{user}', );

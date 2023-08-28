@@ -63,4 +63,9 @@ class TeamPolicy
     {
         //
     }
+
+    public function invite(User $user, Team $team): bool
+    {
+        return $team->user_id == $user->id;
+    }
 }
