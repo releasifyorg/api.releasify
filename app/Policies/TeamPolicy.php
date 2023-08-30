@@ -64,8 +64,13 @@ class TeamPolicy
         //
     }
 
-    public function invite(User $user, Team $team): bool
+    public function invite(User $user, Team $team, User $invitedUser): bool
     {
-        return $team->user_id == $user->id;
+        return $team->user_id == $user->id
+            && !$team->users()->get()->contains($invitedUser)
+            && !$team->invites()->where('email', $invitedUser->email)
+                ->where('team_id', $team->id)
+                ->whereNull('accepted_at')
+                ->exists();
     }
 }

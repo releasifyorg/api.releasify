@@ -19,8 +19,6 @@ class  DeleteTeamController extends ParentController
     public function __invoke(Request $request, Team $team)
     {
         try {
-            $this->authorize('delete', $team);
-
             $isDeleted = ($this->deleteTeamAction)($team);
 
             if (!$isDeleted) {

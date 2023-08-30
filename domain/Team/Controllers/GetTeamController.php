@@ -19,8 +19,6 @@ class GetTeamController extends ParentController
     public function __invoke(Request $request, Team $team)
     {
         try {
-            $this->authorize('view', $team);
-
             $team->load('users');
 
             return $team;

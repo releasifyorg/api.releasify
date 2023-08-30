@@ -69,11 +69,15 @@ Route::group([
 
     Route::get('/', GetTeamsController::class);
     Route::get('/invites', GetInvitesController::class);
-    Route::get('/{team}', GetTeamController::class);
-    Route::post('/{team}/invite/{user}', SendInviteController::class);
+    Route::get('/{team}', GetTeamController::class)
+        ->can('view', 'team');
+    Route::post('/{team}/invite/{user}', SendInviteController::class)
+        ->can('invite', ['team', 'user']);
     Route::post('/', CreateTeamController::class);
-    Route::delete('/{team}', DeleteTeamController::class);
+    Route::delete('/{team}', DeleteTeamController::class)
+        ->can('delete', 'team');
 //    Route::delete('/{team}/remove/{user}', );
-    Route::put('/{team}', UpdateTeamController::class);
+    Route::put('/{team}', UpdateTeamController::class)
+        ->can('update', 'team');
 
 });

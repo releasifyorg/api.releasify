@@ -20,8 +20,6 @@ class UpdateTeamController extends ParentController
     public function __invoke(UpdateTeamRequest $request, Team $team)
     {
         try {
-            $this->authorize('update', $team);
-
             $teamData = UpdateTeamData::fromRequest($request);
 
             $updatedTeam = ($this->updateTeamAction)($team, $teamData);
