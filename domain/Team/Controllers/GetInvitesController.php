@@ -14,7 +14,10 @@ class GetInvitesController extends ParentController
         try {
             return $request->user()->invitesReceived()->whereNull('accepted_at')->get();
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

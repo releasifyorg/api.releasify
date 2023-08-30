@@ -12,17 +12,12 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Logging\Exception;
 
 class DeleteTeamAction
 {
-    public function __invoke(Team $team): bool
+    public function __invoke(Team $team)
     {
-        try {
-            $team->delete();
-
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
+        $team->delete();
     }
 }

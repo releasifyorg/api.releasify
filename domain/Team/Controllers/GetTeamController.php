@@ -23,7 +23,10 @@ class GetTeamController extends ParentController
 
             return $team;
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

@@ -22,13 +22,13 @@ class CreateTeamController extends ParentController
             $teamData = CreateTeamData::fromRequest($request);
 
             $team = ($this->createTeamAction)($teamData);
-            if ($team instanceof \Exception) {
-                return $this->error([], 'Create team transaction error: '.$team->getMessage());
-            }
 
             return $this->success($team);
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

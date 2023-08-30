@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class CreateTeamAction
 {
-    public function __invoke(CreateTeamData $data): Team|\Exception
+    public function __invoke(CreateTeamData $data): ?Team
     {
         try {
             DB::beginTransaction();
@@ -26,7 +26,7 @@ class CreateTeamAction
             return $team;
         } catch (\Exception $e) {
             DB::rollBack();
-            return $e;
+            throw $e;
         }
     }
 }

@@ -26,7 +26,10 @@ class UpdateTeamController extends ParentController
 
             return $this->success($updatedTeam);
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

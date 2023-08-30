@@ -24,11 +24,14 @@ class SendInviteController extends ParentController
         try {
             $inviteData = SendInviteData::fromObjects($team, $user);
 
-            $invite = ($this->sendInviteAction)($inviteData);
+            $invite = ($this->sendInviteAction)($inviteData, $team);
 
             return $invite;
         } catch (\Exception $e) {
-            return $this->error([], $e->getMessage(), $e->getCode());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

@@ -10,10 +10,8 @@ use Domain\Team\Models\Team;
 
 class SendInviteAction
 {
-    public function __invoke(SendInviteData $data): Invite
+    public function __invoke(SendInviteData $data, Team $team): Invite
     {
-        $team = Team::findOrFail($data->team_id);
-
         $invite = $team->invites()->create([
             'sender_id' => auth()->id(),
             'email' => $data->email,
