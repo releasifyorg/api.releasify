@@ -10,9 +10,9 @@ use Spatie\LaravelData\Data;
 class UpdateProjectData extends Data
 {
     public function __construct(
-        public ?string $name,
+        public string $name,
         public ?string $description,
-        public ?bool $is_private,
+        public bool $is_private,
     ) {
     }
 

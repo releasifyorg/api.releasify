@@ -13,18 +13,18 @@ class ProjectUpdateRequest extends ParentRequest
     {
         return [
             'name' => [
-                'nullable',
+                'required',
                 'string',
                 'min:4',
                 'max:32',
             ],
             'description' => [
-                'nullable',
+                'required',
                 'string',
                 'max:255',
             ],
             'is_private' => [
-                'nullable',
+                'required',
                 'boolean',
             ],
         ];

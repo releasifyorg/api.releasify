@@ -19,9 +19,9 @@ class UpdateProjectAction
     public function __invoke(Project $project, UpdateProjectData $data): Project
     {
         $updateData = [
-            'name' => $data->name ?? $project->name,
-            'description' => $data->description ?? $project->description,
-            'is_private' => $data->is_private ?? $project->is_private,
+            'name' => $data->name,
+            'description' => $data->description,
+            'is_private' => $data->is_private,
         ];
 
         $project->update($updateData);
