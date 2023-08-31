@@ -19,6 +19,7 @@ class Project extends Model
         'description',
         'is_private',
         'user_id',
+        'team_id',
     ];
 
     public function user(): BelongsTo

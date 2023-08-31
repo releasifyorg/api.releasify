@@ -16,6 +16,7 @@ class CreateProjectAction
             'description' => $data->description,
             'is_private' => $data->is_private,
             'user_id' => $data->user_id,
+            'team_id' => $data->team_id,
         ]);
     }
 }

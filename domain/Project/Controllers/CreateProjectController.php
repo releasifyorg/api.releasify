@@ -26,7 +26,6 @@ class CreateProjectController extends ParentController
             $project = ($this->createProjectAction)($projectData);
 
             return $this->success($project);
-
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }

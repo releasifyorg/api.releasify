@@ -16,7 +16,8 @@ class CreateProjectData extends Data
         public string $name,
         public ?string $description,
         public bool $is_private,
-        public int $user_id,
+        public ?int $user_id,
+        public ?int $team_id,
     ) {
     }
 
@@ -27,7 +28,8 @@ class CreateProjectData extends Data
             $request->name,
             $request->description,
             $request->is_private,
-            $request->user()->id,
+            $request->user_id,
+            $request->team_id,
         );
     }
 }
