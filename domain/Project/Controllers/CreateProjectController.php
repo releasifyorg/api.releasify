@@ -8,6 +8,7 @@ use App\Support\Parents\ParentController;
 use Domain\Project\Action\CreateProjectAction;
 use Domain\Project\DTO\CreateProjectData;
 use Domain\Project\Requests\CreateProjectRequest;
+use Domain\Project\Resources\ProjectResource;
 use Domain\User\Actions\CreateUserAction;
 use Domain\User\DTO\CreateUserData;
 
@@ -25,9 +26,12 @@ class CreateProjectController extends ParentController
 
             $project = ($this->createProjectAction)($projectData);
 
-            return $this->success($project);
+            return $this->success(new ProjectResource($project));
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

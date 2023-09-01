@@ -9,6 +9,7 @@ use Domain\Project\Action\UpdateProjectAction;
 use Domain\Project\DTO\UpdateProjectData;
 use Domain\Project\Models\Project;
 use Domain\Project\Requests\ProjectUpdateRequest;
+use Domain\Project\Resources\ProjectResource;
 use Domain\User\Actions\DeleteUserAction;
 use Domain\User\Actions\UpdateUserAction;
 use Domain\User\DTO\UpdateUserData;
@@ -26,15 +27,16 @@ class ProjectUpdateController extends ParentController
     public function __invoke(ProjectUpdateRequest $request, Project $project)
     {
         try {
-            $this->authorize('update', $project);
-
             $projectData = UpdateProjectData::fromRequest($request);
 
             $updatedProject = ($this->updateProjectAction)($project, $projectData);
 
-            return $this->success($updatedProject);
+            return $this->success(new ProjectResource($updatedProject));
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

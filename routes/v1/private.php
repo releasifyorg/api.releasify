@@ -53,10 +53,13 @@ Route::group([
 ], function () {
 
     Route::get('/', GetProjectsController::class);
-    Route::get('/{project}', ProjectController::class);
+    Route::get('/{project}', ProjectController::class)
+        ->can('view', 'project');
     Route::post('/', CreateProjectController::class);
-    Route::delete('/{project}', ProjectDeleteController::class);
-    Route::put('/{project}', ProjectUpdateController::class);
+    Route::delete('/{project}', ProjectDeleteController::class)
+        ->can('delete', 'project');
+    Route::put('/{project}', ProjectUpdateController::class)
+        ->can('update', 'project');
 
 });
 

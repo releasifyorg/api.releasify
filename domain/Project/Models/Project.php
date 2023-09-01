@@ -34,6 +34,6 @@ class Project extends Model
 
     public function is_team_project(): bool
     {
-        return $this->belongsTo(Team::class)->exists();
+        return $this->belongsTo(Team::class, 'team_id', 'id')->exists();
     }
 }

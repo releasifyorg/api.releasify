@@ -23,7 +23,7 @@ class ProjectPolicy
     {
         return !$project->is_private
             || $project->user_id == $user->id
-            || $user->teams()->wherePivot('is_active', true)->where('team_id', $project->team_id)->exists();
+            || $user->teams()->where('team_id', $project->team_id)->exists();
     }
 
     /**
@@ -39,7 +39,8 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project): bool
     {
-        return $project->user_id == $user->id;
+        return $project->user_id == $user->id
+            || $user->teams()->where('team_id', $project->team_id)->exists();
     }
 
     /**
@@ -47,7 +48,8 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project): bool
     {
-        return $project->user_id == $user->id;
+        return $project->user_id == $user->id
+            || $user->teams()->where('team_id', $project->team_id)->exists();
     }
 
     /**
