@@ -9,6 +9,7 @@ use Domain\Team\Actions\UpdateTeamAction;
 use Domain\Team\DTO\UpdateTeamData;
 use Domain\Team\Models\Team;
 use Domain\Team\Requests\UpdateTeamRequest;
+use Domain\Team\Resources\TeamResource;
 
 class UpdateTeamController extends ParentController
 {
@@ -24,7 +25,9 @@ class UpdateTeamController extends ParentController
 
             $updatedTeam = ($this->updateTeamAction)($team, $teamData);
 
-            return $this->success($updatedTeam);
+            return $this->success(
+                new TeamResource($updatedTeam)
+            );
         } catch (\Exception $e) {
             return $this->error(
                 [],

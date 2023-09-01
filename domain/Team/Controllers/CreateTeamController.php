@@ -8,6 +8,7 @@ use App\Support\Parents\ParentController;
 use Domain\Team\Actions\CreateTeamAction;
 use Domain\Team\DTO\CreateTeamData;
 use Domain\Team\Requests\CreateTeamRequest;
+use Domain\Team\Resources\TeamResource;
 
 class CreateTeamController extends ParentController
 {
@@ -23,7 +24,7 @@ class CreateTeamController extends ParentController
 
             $team = ($this->createTeamAction)($teamData);
 
-            return $this->success($team);
+            return $this->success(new TeamResource($team));
         } catch (\Exception $e) {
             return $this->error(
                 [],

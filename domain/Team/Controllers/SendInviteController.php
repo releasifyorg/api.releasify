@@ -8,7 +8,7 @@ use App\Support\Parents\ParentController;
 use Domain\Team\Actions\SendInviteAction;
 use Domain\Team\DTO\SendInviteData;
 use Domain\Team\Models\Team;
-use Domain\Team\Requests\InviteRequest;
+use Domain\Team\Resources\InviteResource;
 use Domain\User\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,7 +26,9 @@ class SendInviteController extends ParentController
 
             $invite = ($this->sendInviteAction)($inviteData, $team);
 
-            return $invite;
+            return $this->success(
+                new InviteResource($invite)
+            );
         } catch (\Exception $e) {
             return $this->error(
                 [],

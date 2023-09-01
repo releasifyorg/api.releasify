@@ -12,11 +12,9 @@ class SendInviteAction
 {
     public function __invoke(SendInviteData $data, Team $team): Invite
     {
-        $invite = $team->invites()->create([
+        return $team->invites()->create([
             'sender_id' => auth()->id(),
             'email' => $data->email,
         ]);
-
-        return $invite;
     }
 }
