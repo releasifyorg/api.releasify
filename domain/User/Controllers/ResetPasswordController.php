@@ -35,7 +35,10 @@ class ResetPasswordController extends ParentController
 
             return $this->success($reset_token);
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

@@ -10,6 +10,7 @@ use Domain\User\Actions\UpdateUserAction;
 use Domain\User\DTO\UpdateUserData;
 use Domain\User\Models\User;
 use Domain\User\Requests\UserUpdateRequest;
+use Domain\User\Resources\UserResource;
 use Illuminate\Http\Request;
 
 class ProfileUpdateController extends ParentController
@@ -28,9 +29,12 @@ class ProfileUpdateController extends ParentController
 
             $updatedUser = ($this->updateUserAction)($user, $userData);
 
-            return $this->success($updatedUser);
+            return $this->success(new UserResource($updatedUser));
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

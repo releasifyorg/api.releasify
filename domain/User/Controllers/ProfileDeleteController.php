@@ -22,12 +22,15 @@ class ProfileDeleteController extends ParentController
             $isDeleted = ($this->deleteUserAction)($request);
 
             if (!$isDeleted) {
-                return $this->error([], 'Database deleting error');
+                throw new \Exception('Database deleting error', 500);
             }
 
             return $this->noContent();
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 }

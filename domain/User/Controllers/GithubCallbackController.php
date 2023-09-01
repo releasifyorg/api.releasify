@@ -75,7 +75,10 @@ class GithubCallbackController extends ParentController
 
             return $this->success($token);
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error(
+                [],
+                $e->getMessage()
+            );
         }
     }
 
