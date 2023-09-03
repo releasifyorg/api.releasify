@@ -24,6 +24,11 @@ class Team extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function hasUser(User $user): bool
+    {
+        return $this->users()->get()->contains($user);
+    }
+
     public function projects(): HasMany
     {
         return $this->hasMany(Team::class);

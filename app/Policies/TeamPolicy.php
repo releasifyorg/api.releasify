@@ -21,7 +21,7 @@ class TeamPolicy
      */
     public function view(User $user, Team $team): bool
     {
-        return $user->teams()->where('team_id', $team->id)->exists();
+        return $team->hasUser($user);
     }
 
     /**
@@ -67,10 +67,16 @@ class TeamPolicy
     public function invite(User $user, Team $team, User $invitedUser): bool
     {
         return $team->user_id == $user->id
-            && !$team->users()->get()->contains($invitedUser)
+            && !$team->hasUser($invitedUser)
             && !$team->invites()->where('email', $invitedUser->email)
                 ->where('team_id', $team->id)
                 ->whereNull('accepted_at')
                 ->exists();
+    }
+
+    public function removeMember(User $user, Team $team, User $userToRemove): bool
+    {
+        return $team->user_id == $user->id
+            && $team->hasUser($userToRemove);
     }
 }

@@ -9,6 +9,7 @@ use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
 use Domain\Project\Controllers\ProjectUpdateController;
 use Domain\Team\Controllers\CreateTeamController;
+use Domain\Team\Controllers\RemoveMemberController;
 use Domain\Team\Controllers\DeleteTeamController;
 use Domain\Team\Controllers\GetInvitesController;
 use Domain\Team\Controllers\GetTeamController;
@@ -79,7 +80,8 @@ Route::group([
     Route::post('/', CreateTeamController::class);
     Route::delete('/{team}', DeleteTeamController::class)
         ->can('delete', 'team');
-//    Route::delete('/{team}/remove/{user}', );
+    Route::delete('/{team}/remove/{user}', RemoveMemberController::class)
+        ->can('removeMember', ['team', 'user']);
     Route::put('/{team}', UpdateTeamController::class)
         ->can('update', 'team');
 
