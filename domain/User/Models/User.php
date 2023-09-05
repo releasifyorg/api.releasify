@@ -82,4 +82,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invite::class, 'email', 'email');
     }
+
+    public function hasInvite(Invite $invite): bool
+    {
+        return $this->invitesReceived()->get()->contains($invite);
+    }
 }

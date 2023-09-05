@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use Domain\Team\Models\Invite;
 use Domain\Team\Models\Team;
 use Domain\User\Models\User;
 use Illuminate\Auth\Access\Response;
@@ -78,5 +79,11 @@ class TeamPolicy
     {
         return $team->user_id == $user->id
             && $team->hasUser($userToRemove);
+    }
+
+    public function inviteDeny(User $user, Invite $invite): bool
+    {
+        return $user->hasInvite($invite)
+            && !$invite->accepted_at;
     }
 }

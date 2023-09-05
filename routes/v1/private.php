@@ -9,11 +9,12 @@ use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
 use Domain\Project\Controllers\ProjectUpdateController;
 use Domain\Team\Controllers\CreateTeamController;
-use Domain\Team\Controllers\RemoveMemberController;
 use Domain\Team\Controllers\DeleteTeamController;
+use Domain\Team\Controllers\DenyInviteController;
 use Domain\Team\Controllers\GetInvitesController;
 use Domain\Team\Controllers\GetTeamController;
 use Domain\Team\Controllers\GetTeamsController;
+use Domain\Team\Controllers\RemoveMemberController;
 use Domain\Team\Controllers\SendInviteController;
 use Domain\Team\Controllers\UpdateTeamController;
 use Domain\User\Controllers\ProfileController;
@@ -73,6 +74,9 @@ Route::group([
 
     Route::get('/', GetTeamsController::class);
     Route::get('/invites', GetInvitesController::class);
+//    Route::post('/invites/{invite}/accept');
+    Route::delete('/invites/{invite}/deny', DenyInviteController::class)
+        ->can('inviteDeny', 'invite');
     Route::get('/{team}', GetTeamController::class)
         ->can('view', 'team');
     Route::post('/{team}/invite/{user}', SendInviteController::class)

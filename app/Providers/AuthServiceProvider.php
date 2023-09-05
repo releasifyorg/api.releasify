@@ -6,6 +6,7 @@ namespace App\Providers;
 use App\Policies\ProjectPolicy;
 use App\Policies\TeamPolicy;
 use Domain\Project\Models\Project;
+use Domain\Team\Models\Invite;
 use Domain\Team\Models\Team;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -19,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Project::class => ProjectPolicy::class,
         Team::class => TeamPolicy::class,
+        Invite::class => TeamPolicy::class,
     ];
 
     /**
