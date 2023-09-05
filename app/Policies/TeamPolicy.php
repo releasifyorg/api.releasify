@@ -86,4 +86,10 @@ class TeamPolicy
         return $user->hasInvite($invite)
             && !$invite->accepted_at;
     }
+
+    public function inviteAccept(User $user, Invite $invite): bool
+    {
+        return $user->hasInvite($invite)
+            && !$invite->accepted_at;
+    }
 }

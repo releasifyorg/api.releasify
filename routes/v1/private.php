@@ -8,6 +8,7 @@ use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
 use Domain\Project\Controllers\ProjectUpdateController;
+use Domain\Team\Controllers\AcceptInviteController;
 use Domain\Team\Controllers\CreateTeamController;
 use Domain\Team\Controllers\DeleteTeamController;
 use Domain\Team\Controllers\DenyInviteController;
@@ -74,7 +75,8 @@ Route::group([
 
     Route::get('/', GetTeamsController::class);
     Route::get('/invites', GetInvitesController::class);
-//    Route::post('/invites/{invite}/accept');
+    Route::post('/invites/{invite}/accept', AcceptInviteController::class)
+        ->can('inviteAccept', 'invite');
     Route::delete('/invites/{invite}/deny', DenyInviteController::class)
         ->can('inviteDeny', 'invite');
     Route::get('/{team}', GetTeamController::class)
