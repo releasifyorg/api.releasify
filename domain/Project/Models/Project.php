@@ -18,6 +18,7 @@ class Project extends Model
         'name',
         'description',
         'is_private',
+        'github_repo_id',
         'user_id',
         'team_id',
     ];

@@ -15,8 +15,11 @@ class CreateProjectAction
             'name' => $data->name,
             'description' => $data->description,
             'is_private' => $data->is_private,
+            'github_repo_id' => $data->github_repo_id,
             'user_id' => $data->user_id,
             'team_id' => $data->team_id,
         ]);
+
+        // TODO: sync github repo releases if github_repo_id is not null
     }
 }

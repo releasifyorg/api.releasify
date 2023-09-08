@@ -67,4 +67,10 @@ class ProjectPolicy
     {
         //
     }
+
+    public function commit(User $user, Project $project): bool
+    {
+        return $project->user_id == $user->id
+            || $user->teams()->where('team_id', $project->team_id)->exists();
+    }
 }

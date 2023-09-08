@@ -5,7 +5,7 @@ namespace Domain\Project\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectResource extends JsonResource
+class CommitResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,11 @@ class ProjectResource extends JsonResource
         return [
             'id' => $this['id'],
             'name' => $this['name'],
-            'description' => $this['description'],
-            'is_private' => $this['is_private'],
-            'github_repo_id' => $this['github_repo_id'],
-            'user_id' => $this['user_id'],
-            'team_id' => $this['team_id'],
+            'body' => $this['body'],
+            'prerelease' => $this['prerelease'],
+            'make_latest' => $this['make_latest'],
+            'tag_name' => $this['tag_name'],
+            'project_id' => $this['project_id'],
         ];
     }
 }

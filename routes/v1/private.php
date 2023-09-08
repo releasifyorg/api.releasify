@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Domain\Github\Controllers\GetReposController;
+use Domain\Project\Controllers\CreateCommitController;
 use Domain\Project\Controllers\CreateProjectController;
 use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
@@ -56,6 +57,8 @@ Route::group([
 ], function () {
 
     Route::get('/', GetProjectsController::class);
+    Route::post('/{project}/commits', CreateCommitController::class)
+        ->can('commit', 'project');
     Route::get('/{project}', ProjectController::class)
         ->can('view', 'project');
     Route::post('/', CreateProjectController::class);

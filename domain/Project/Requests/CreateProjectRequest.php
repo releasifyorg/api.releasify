@@ -27,6 +27,10 @@ class CreateProjectRequest extends ParentRequest
                 'required',
                 'boolean',
             ],
+            'github_repo_id' => [
+                'nullable',
+                'integer',
+            ],
             'user_id' => [
                 'required_without:team_id',
                 'prohibits:team_id',
