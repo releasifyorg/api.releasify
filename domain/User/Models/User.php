@@ -3,6 +3,7 @@
 namespace Domain\User\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Domain\Project\Models\Commit;
 use Domain\Project\Models\Project;
 use Domain\Team\Models\Invite;
 use Domain\Team\Models\Team;
@@ -86,5 +87,10 @@ class User extends Authenticatable
     public function hasInvite(Invite $invite): bool
     {
         return $this->invitesReceived()->get()->contains($invite);
+    }
+
+    public function commits(): HasMany
+    {
+        return $this->hasMany(Commit::class);
     }
 }

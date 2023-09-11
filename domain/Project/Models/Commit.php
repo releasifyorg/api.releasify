@@ -2,9 +2,10 @@
 
 namespace Domain\Project\Models;
 
+use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\Project;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Commit extends Model
 {
@@ -18,11 +19,17 @@ class Commit extends Model
         'prerelease',
         'make_latest',
         'tag_name',
+        'user_id',
         'project_id',
     ];
 
-    public function project()
+    public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
