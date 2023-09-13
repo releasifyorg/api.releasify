@@ -7,6 +7,7 @@ use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
@@ -36,5 +37,10 @@ class Project extends Model
     public function is_team_project(): bool
     {
         return $this->belongsTo(Team::class, 'team_id', 'id')->exists();
+    }
+
+    public function commits(): HasMany
+    {
+        return $this->hasMany(Commit::class);
     }
 }

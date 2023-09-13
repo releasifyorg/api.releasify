@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Domain\Github\Controllers\GetReposController;
 use Domain\Project\Controllers\CreateCommitController;
 use Domain\Project\Controllers\CreateProjectController;
+use Domain\Project\Controllers\GetCommitsController;
 use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
@@ -57,6 +58,8 @@ Route::group([
 ], function () {
 
     Route::get('/', GetProjectsController::class);
+    Route::get('/{project}/commits', GetCommitsController::class)
+        ->can('view', 'project');
     Route::post('/{project}/commits', CreateCommitController::class)
         ->can('commit', 'project');
     Route::get('/{project}', ProjectController::class)
@@ -77,11 +80,15 @@ Route::group([
 ], function () {
 
     Route::get('/', GetTeamsController::class);
-    Route::get('/invites', GetInvitesController::class);
-    Route::post('/invites/{invite}/accept', AcceptInviteController::class)
-        ->can('inviteAccept', 'invite');
-    Route::delete('/invites/{invite}/deny', DenyInviteController::class)
-        ->can('inviteDeny', 'invite');
+
+    Route::prefix('invites')->group(function () {
+        Route::get('/', GetInvitesController::class);
+        Route::post('/{invite}/accept', AcceptInviteController::class)
+            ->can('inviteAccept', 'invite');
+        Route::delete('/{invite}/deny', DenyInviteController::class)
+            ->can('inviteDeny', 'invite');
+    });
+
     Route::get('/{team}', GetTeamController::class)
         ->can('view', 'team');
     Route::post('/{team}/invite/{user}', SendInviteController::class)
