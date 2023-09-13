@@ -9,6 +9,7 @@ use Domain\Project\Controllers\GetCommitsController;
 use Domain\Project\Controllers\GetProjectsController;
 use Domain\Project\Controllers\ProjectController;
 use Domain\Project\Controllers\ProjectDeleteController;
+use Domain\Project\Controllers\ProjectGithubConnectController;
 use Domain\Project\Controllers\ProjectUpdateController;
 use Domain\Team\Controllers\AcceptInviteController;
 use Domain\Team\Controllers\CreateTeamController;
@@ -62,6 +63,8 @@ Route::group([
         ->can('view', 'project');
     Route::post('/{project}/commits', CreateCommitController::class)
         ->can('commit', 'project');
+    Route::post('/{project}/github-connect', ProjectGithubConnectController::class)
+        ->can('githubConnect', 'project');
     Route::get('/{project}', ProjectController::class)
         ->can('view', 'project');
     Route::post('/', CreateProjectController::class);

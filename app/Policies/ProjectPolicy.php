@@ -73,4 +73,9 @@ class ProjectPolicy
         return $project->user_id == $user->id
             || $user->teams()->where('team_id', $project->team_id)->exists();
     }
+
+    public function githubConnect(User $user, Project $project)
+    {
+        return $project->user_id == $user->id;
+    }
 }
