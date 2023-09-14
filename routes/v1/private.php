@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Domain\Github\Controllers\GetRepoController;
 use Domain\Github\Controllers\GetReposController;
 use Domain\Project\Controllers\CreateCommitController;
 use Domain\Project\Controllers\CreateProjectController;
@@ -46,6 +47,7 @@ Route::group([
     ], function () {
 
         Route::get('/repos', GetReposController::class);
+        Route::get('/repos/{repo_id}', GetRepoController::class);
 
     });
 
