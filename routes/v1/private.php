@@ -19,6 +19,7 @@ use Domain\Team\Controllers\DenyInviteController;
 use Domain\Team\Controllers\GetInvitesController;
 use Domain\Team\Controllers\GetTeamController;
 use Domain\Team\Controllers\GetTeamsController;
+use Domain\Team\Controllers\LeaveTeamController;
 use Domain\Team\Controllers\RemoveMemberController;
 use Domain\Team\Controllers\SendInviteController;
 use Domain\Team\Controllers\UpdateTeamController;
@@ -103,6 +104,8 @@ Route::group([
         ->can('delete', 'team');
     Route::delete('/{team}/remove/{user}', RemoveMemberController::class)
         ->can('removeMember', ['team', 'user']);
+    Route::delete('/{team}/leave', LeaveTeamController::class)
+        ->can('view', 'team');
     Route::put('/{team}', UpdateTeamController::class)
         ->can('update', 'team');
 

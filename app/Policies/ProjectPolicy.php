@@ -70,6 +70,13 @@ class ProjectPolicy
 
     public function commit(User $user, Project $project): bool
     {
+        if ($project->github_repo_id
+        && !$user->github_access_token) {
+            return false;
+        }
+
+        // TODO: if the user isn't in the github team
+
         return $project->user_id == $user->id
             || $user->teams()->where('team_id', $project->team_id)->exists();
     }
